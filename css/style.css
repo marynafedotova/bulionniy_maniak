@@ -73,6 +73,9 @@ html,body{height:100%; margin:0;
   width: 70px;
   
 }
+.brand:hover{
+  scale: 1.1;
+}
 .site-header a img{
   width: 100%;
   border-radius: 8px;
@@ -93,6 +96,9 @@ html,body{height:100%; margin:0;
 .site-header ul li {
   list-style: none;
   display: inline-flex;
+}
+.site-header ul li a:hover{
+  scale: 1.1;
 }
 .site-header ul li a img{
   width: 35px;
