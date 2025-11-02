@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Контакти — Бульйонний маніяк</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site-root">
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="/img/Бульйонний_маньяк-лого.png" alt="logo"></a>
+    <nav>
+      <a href="menu.html">Меню</a>
+      <a href="about.html">Про нас</a>
+      <a href="contact.html">Контакти</a>
+      <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+  <main class="container first-srean">
+
+<h2>Контакти</h2>
+<div class="card">
+  <p>Адреса: вул. Раменна, 13, Київ</p>
+  <p>Телефон: +380 44 000 0000</p>
+  <form id="contact-form" style="margin-top:8px;">
+    <input name="name" placeholder="Ім'я" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px"/><input name="email" placeholder="Email" style="width:100%;padding:8px;margin-bottom:8px;border-radius:6px"/><textarea name="message" placeholder="Повідомлення" style="width:100%;padding:8px;border-radius:6px"></textarea>
+    <div style="margin-top:8px"><button class="btn" type="submit">Відправити</button></div>
+  </form>
+</div>
+<script src="/js/toast.js"></script>
+<script>
+const BOT_TOKEN = '8002605410:AAEudRj-X6KhprfKjQmo-1lKJ259w8gSD-U';
+const CHAT_ID = '-1002953015063';
+const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = this.elements['name'].value.trim();
+  const email = this.elements['email'].value.trim();
+  const messageText = this.elements['message'].value.trim();
+
+  if (!name || !email || !messageText) {
+    toast.error('Будь ласка, заповніть усі поля!');
+    return;
+  }
+
+  const message = `<b>Нове повідомлення з контактної форми</b>\n\n` +
+                  `<b>Ім'я:</b> ${name}\n` +
+                  `<b>Email:</b> ${email}\n` +
+                  `<b>Повідомлення:</b> ${messageText}`;
+
+  fetch(API_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text: message,
+      parse_mode: 'HTML'
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.ok) {
+      toast.success('✅ Повідомлення надіслано!');
+      document.getElementById('contact-form').reset();
+    } else {
+      toast.error('❌ Помилка при надсиланні повідомлення!');
+    }
+  })
+  .catch(err => {
+    toast.error('Помилка: ' + err.message);
+  });
+});
+</script>
+  </main>
+  <footer class="site-footer card">
+    <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
+  </footer>
+  </div>
+  <script src="js/background.js"></script>
+</body>
+</html>

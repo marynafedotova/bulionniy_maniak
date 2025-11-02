@@ -1,0 +1,130 @@
+[
+  {
+    "id": "r1",
+    "title": "Тонкоцу Рамен",
+    "category":"pork-ramen",
+    "description": "Класичний насичений бульйон тонкоцу, локшина, яйце, місо.",
+    "price": 220,
+    "image": "img/pngtree-traditional-japanese-ramen-png-image_17271852.png"
+  },
+  {
+    "id": "r6",
+    "title": "Преміум Тонкоцу",
+    "category":"pork-ramen",
+    "description": "Тонкоцу з додаванням свинини та грибів шіїтаке.",
+    "price": 250,
+    "image": "img/pngtree-authentic-ramen-bowl-with-egg-and-pork-slices-png-image_16961355.png"
+  },
+  {
+    "id": "r7",
+    "title": "Тонкоцу Часниковий",
+    "category":"pork-ramen",
+    "description": "Насичений часниковий бульйон з тонкоцу та зеленню.",
+    "price": 230,
+    "image": "img/pngtree-authentic-japanese-ramen-bowl-with-noodles-boiled-eggs-sliced-meat-vegetables-png-image_16740069.png"
+  },
+  {
+    "id": "r8",
+    "title": "Тонкоцу Спайсі",
+    "category":"pork-ramen",
+    "description": "Тонкоцу з гострим соусом чилі та свининою.",
+    "price": 240,
+    "image": "img/pngtree-steaming-bowl-of-ramen-with-tender-slices-egg-and-fresh-seaweed-png-image_15581944.png"
+  },
+  {
+    "id": "r2",
+    "title": "Шою Рамен",
+    "category":"soya-ramen",
+    "description": "Легкий соєвий бульйон, курка, норі, цибуля.",
+    "price": 190,
+    "image": "img/pngtree-savory-ramen-bowl-delight-png-image_12534799.png"
+  },
+  {
+    "id": "r9",
+    "title": "Шою Морепродукти",
+    "category":"soya-ramen",
+    "description": "Соєвий бульйон з креветками та кальмаром.",
+    "price": 210,
+    "image": "img/nigoshi-z-kurkoyu-teriyaki-sajt-eksp-400x300.png"
+  },
+  {
+    "id": "r10",
+    "title": "Шою Курячий Преміум",
+    "category":"soya-ramen",
+    "description": "Легкий соєвий бульйон з куркою, яйцем та зеленню.",
+    "price": 200,
+    "image": "img/pngtree-the-bowl-of-ramen-contains-an-egg-image_13050816.png"
+  },
+  {
+    "id": "r11",
+    "title": "Шою Спайсі",
+    "category":"soya-ramen",
+    "description": "Соєвий бульйон з гострим соусом чилі та норі.",
+    "price": 215,
+    "image": "img/pngtree-a-bowl-of-ramen-with-some-meat-on-the-side-image_13143741.png"
+  },
+  {
+    "id": "r3",
+    "title": "Місо Рамен",
+    "category":"miso-ramen",
+    "description": "Глибокий місо-бульйон, кукурудза, вершковий смак.",
+    "price": 210,
+    "image": "img/primer-plano-comida-servida-cuenco_1048944-9768543.png"
+  },
+  {
+    "id": "r12",
+    "title": "Місо Свиний",
+    "category":"miso-ramen",
+    "description": "Місо-бульйон зі свининою та грибами.",
+    "price": 230,
+    "image": "img/bowl-mouth-watering-japanese-ramen-single-serving_1048944-22216553.png"
+  },
+  {
+    "id": "r13",
+    "title": "Місо Спайсі",
+    "category":"miso-ramen",
+    "description": "Гострий місо-бульйон з чилі та свининою.",
+    "price": 240,
+    "image": "img/professional-food-photographer-hired-shoot_670382-61212.png"
+  },
+  {
+    "id": "r14",
+    "title": "Місо Морепродукти",
+    "category":"miso-ramen",
+    "description": "Місо-бульйон з креветками, кальмаром та кукурудзою.",
+    "price": 250,
+    "image": "img/asian-ramen-soup-with-noodles-mushrooms-pickled-egg-wooden-table-photo-restaurant_1258827-733.png"
+  },
+  {
+    "id": "r5",
+    "title": "Спайсі Рамен",
+    "category":"salt-ramen",
+    "description": "Гострий бульйон з копченою пастою чилі та беконом.",
+    "price": 230,
+    "image": "img/bowl-ramen-japan-traditional-background-professional-advertising-food-photo-ai-generated_755721-4831.png"
+  },
+  {
+    "id": "r15",
+    "title": "Спайсі Свиний",
+    "category":"salt-ramen",
+    "description": "Гострий бульйон зі свининою та чилі.",
+    "price": 240,
+    "image": "img/plato-ramen-plato-fideos-huevo-frito-fondo-transparente-generado-ai_768733-43806.png"
+  },
+  {
+    "id": "r16",
+    "title": "Спайсі Морепродукти",
+    "category":"salt-ramen",
+    "description": "Гострий бульйон з креветками та кальмаром.",
+    "price": 245,
+    "image": "img/delicieux-bol-ramen-japonais-oeufs-porc-algues-fond-transparent_1258645-2083.png"
+  },
+  {
+    "id": "r17",
+    "title": "Спайсі Курячий",
+    "category":"salt-ramen",
+    "description": "Гострий бульйон з куркою та овочами.",
+    "price": 235,
+    "image": "img/pngtree-savory-ramen-bowl-delight-png-image_12534799.png"
+  }
+]

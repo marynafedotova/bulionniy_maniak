@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="uk">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+  <title>Меню — Бульйонний маніяк</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="site-root">
+    <header class="site-header">
+      <a class="brand" href="index.html"><img src="/img/Бульйонний_маньяк-лого.png" alt=""></a>
+      <nav>
+        <a href="menu.html">Меню</a>
+        <a href="about.html">Про нас</a>
+        <a href="contact.html">Контакти</a>
+        <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
+      </nav>
+    </header>
+    <main class="container">
+
+      <h2>Меню</h2>
+      <div id="memu-category">
+        <div class="category-item"
+          style="background: radial-gradient(circle,rgba(166, 110, 75, 1) 0%, rgba(107, 89, 80, 1) 100%);">
+          <div class="title-item">Соєвий рамен</div>
+          <div class="ramen">しょうゆラーメン</div>
+          <div class="title-img"><img src="/img/соевый.png" alt=""></div>
+          <a href="#soya-ramen">Переглянути</a>
+        </div>
+        <div class="category-item"
+          style="background: radial-gradient(circle,rgba(255, 107, 53, 1) 0%, rgba(125, 37, 0, 1) 100%);">
+          <div class="title-item">Солоний рамен</div>
+          <div class="ramen">しおラーメン</div>
+          <div class="title-img"><img src="/img/солоний.png" alt=""></div>
+          <a href="#salt-ramen">Переглянути</a>
+        </div>
+
+        <div class="category-item"
+          style="background: radial-gradient(circle,rgba(232, 197, 71, 1) 0%, rgba(156, 124, 11, 1) 100%);">
+          <div class="title-item">Місо-рамен</div>
+          <div class="ramen">みそラーメン</div>
+          <div class="title-img"><img src="/img/мисо.png" alt=""></div>
+          <a href="#miso-ramen">Переглянути</a>
+        </div>
+        <div class="category-item"
+          style="background: radial-gradient(circle,rgba(255, 77, 109, 1) 0%, rgba(97, 46, 52, 1) 100%);">
+          <div class="title-item">Свиний рамен</div>
+          <div class="ramen">豚骨ラーメン</div>
+          <div class="title-img"><img src="/img/свиний.png" alt=""></div>
+          <a href="#pork-ramen">Переглянути</a>
+        </div>
+      </div>
+      <div id="menu">
+          <div class="menu-category-item">Соєвий рамен </div>
+        <div id="soya-ramen"></div>
+          <div class="menu-category-item">Солоний рамен</div>
+        <div id="salt-ramen"></div>
+         <div class="menu-category-item">Місо-рамен</div>
+        <div id="miso-ramen"></div>
+        <div class="menu-category-item">Свиний рамен</div>
+        <div id="pork-ramen"></div>
+      </div>
+      <!-- <div id="menu-grid" class="grid card"></div> -->
+      <template id="product-card">
+        <article class="card">
+          <img class="card-img" src="" alt="">
+          <div class="card-body">
+            <h3 class="card-title"></h3>
+            <p class="card-desc"></p>
+            <div class="card-bottom">
+              <strong class="card-price"></strong>
+              <div>
+                <button class="btn small details-btn">Деталі</button>
+                <button class="btn small add-btn">Додати</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </template>
+      <div id="modal" class="modal hidden">
+        <div class="modal-content">
+          <button class="modal-close">✕</button>
+          <img id="modal-img" src="" alt="" style="width:100%; border-radius:8px" />
+          <h3 id="modal-title"></h3>
+          <p id="modal-desc"></p>
+          <p><strong>Ціна: <span id="modal-price"></span> грн</strong></p>
+          <div class="modal-actions">
+            <input id="modal-qty" type="number" min="1" value="1" />
+            <button id="modal-add" class="btn">Додати в кошик</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer card">
+      <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
+    </footer>
+  </div>
+  <script src="js/cart.js"></script>
+  <script src="js/toast.js"></script>
+  <script src="js/background.js"></script>
+</body>
+
+</html>
