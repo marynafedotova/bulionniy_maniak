@@ -28,7 +28,7 @@ body {
   font-family: sans-serif;
 
  background: var(--bg);
-  /* background-image: url('/img/sakura-bg.png'); */
+  /* background-image: url('./img/sakura-bg.png'); */
   background-size: cover;       /* Заполняет весь экран */
   background-position: center;  /* Центр изображения */
   background-repeat: no-repeat;
