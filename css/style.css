@@ -13,12 +13,12 @@
 }
 @font-face {
   font-family: 'Hanko';
-  src: url('/fonts/HANKO.otf') format('opentype');
+  src: url('../fonts/HANKO.otf') format('opentype');
 
 }
 @font-face {
   font-family: 'Seibi Minato';
-  src: url('/fonts/Seibi\ Minato.otf') format('opentype');
+  src: url('../fonts/Seibi/Minato.otf') format('opentype');
 
 }
 
