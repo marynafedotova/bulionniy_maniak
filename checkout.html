@@ -1,129 +1,135 @@
 <!doctype html>
 <html lang="uk">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
   <title>Оформлення — Бульйонний маніяк</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
   <div class="site-root">
-  <header class="site-header">
+    <header class="site-header">
       <a class="brand" href="index.html"><img src="./img/Бульйонний_маньяк-лого.png" alt="logo"></a>
       <nav>
-      <a href="menu.html">Меню</a>
-      <a href="about.html">Про нас</a>
-      <a href="contact.html">Контакти</a>
-      <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
-  <main class="container first-srean">
+        <a href="menu.html">Меню</a>
+        <a href="about.html">Про нас</a>
+        <a href="contact.html">Контакти</a>
+        <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
+      </nav>
+    </header>
+    <main class="container first-srean">
 
-<h2>Оформлення замовлення</h2>
-<form id="checkout-form" class="card">
-  <div style="margin-bottom:10px">
-    <label>Ім'я</label>
-    <input name="name" id="userName" required style="width:100%; padding:8px; border-radius:6px;">
-  </div>
-  <div style="margin-bottom:10px">
-    <label>Телефон</label>
-    <input name="phone" id="userPhone" required style="width:100%; padding:8px; border-radius:6px;">
-  </div>
-  <div style="margin-bottom:10px">
-    <label>Адреса</label>
-    <input name="address" id="userAddress" required style="width:100%; padding:8px; border-radius:6px;">
-  </div>
-  <div style="margin-bottom:10px">
-    <p>Сума: <strong id="checkout-total">0</strong> грн</p>
-  </div>
-  <button class="btn" type="submit">Підтвердити</button>
-</form>
+      <h2>Оформлення замовлення</h2>
+      <form id="checkout-form" class="card">
+        <div style="margin-bottom:10px">
+          <label>Ім'я</label>
+          <input name="name" id="userName" required style="width:100%; padding:8px; border-radius:6px;">
+        </div>
+        <div style="margin-bottom:10px">
+          <label>Телефон</label>
+          <input name="phone" id="userPhone" required style="width:100%; padding:8px; border-radius:6px;">
+        </div>
+        <div style="margin-bottom:10px">
+          <label>Адреса</label>
+          <input name="address" id="userAddress" required style="width:100%; padding:8px; border-radius:6px;">
+        </div>
+        <div style="margin-bottom:10px">
+          <p>Сума: <strong id="checkout-total">0</strong> грн</p>
+        </div>
+        <button class="btn" type="submit">Підтвердити</button>
+      </form>
 
-<div id="order-result" class="card" style="margin-top:12px; display:none"></div>
-<script src="/js/toast.js"></script>
-<script>
-const cart = JSON.parse(localStorage.getItem('bm_cart') || '[]');
-const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-document.getElementById('checkout-total').textContent = Math.round(total);
+      <div id="order-result" class="card" style="margin-top:12px; display:none"></div>
+      <script src="/js/toast.js"></script>
+      <script>
+        const cart = JSON.parse(localStorage.getItem('bm_cart') || '[]');
+        const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        document.getElementById('checkout-total').textContent = Math.round(total);
 
-const BOT_TOKEN = '8531254926:AAFe4eOXuBEtJBlKMUwpczmUiLyT7eyuYvo';
-const CHAT_ID = '-1003249595740';
-const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        const BOT_TOKEN = '8531254926:AAFe4eOXuBEtJBlKMUwpczmUiLyT7eyuYvo';
+        const CHAT_ID = '-1003249595740';
+        const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-document.getElementById('checkout-form').addEventListener('submit', function (e) {
-  e.preventDefault();
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+          e.preventDefault();
 
-  if (cart.length === 0) {
-    toast.error('Кошик порожній!');
-    return;
-  }
+          if (cart.length === 0) {
+            toast.error('Кошик порожній!');
+            return;
+          }
 
-  const name = document.getElementById('userName').value.trim();
-  const phone = document.getElementById('userPhone').value.trim();
-  const address = document.getElementById('userAddress').value.trim();
+          const name = document.getElementById('userName').value.trim();
+          const phone = document.getElementById('userPhone').value.trim();
+          const address = document.getElementById('userAddress').value.trim();
 
-  if (!name || !phone || !address) {
-    toast.error('Будь ласка, заповніть усі поля!');
-    return;
-  }
+          if (!name || !phone || !address) {
+            toast.error('Будь ласка, заповніть усі поля!');
+            return;
+          }
 
-  function generateOrderId() {
-  const now = new Date();
-  const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const year = String(now.getFullYear()).slice(-2); 
-  const serial = String(Math.floor(Math.random() * 900 + 100)); 
-  return `ORD-${day}${month}${year}-${serial}`;
-}
+          function generateOrderId() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = String(now.getFullYear()).slice(-2);
+            const serial = String(Math.floor(Math.random() * 900 + 100));
+            return `ORD-${day}${month}${year}-${serial}`;
+          }
 
-const orderId = generateOrderId();
+          const orderId = generateOrderId();
 
-  let message = `🍜 <b>Нове замовлення!</b>\n`;
-  message += `🆔 <b>ID:</b> ${orderId}\n`;
-  message += `👤 <b>Ім’я:</b> ${name}\n`;
-  message += `📞 <b>Телефон:</b> ${phone}\n`;
-  message += `🏠 <b>Адреса:</b> ${address}\n`;
-  message += `💰 <b>Сума:</b> ${total} грн\n\n`;
-  message += `🧾 <b>Склад замовлення:</b>\n`;
-  cart.forEach((item) => {
-    message += `- ${item.title} x${item.qty} = ${Math.round(item.price * item.qty)} грн\n`;
-  });
+          let message = `🍜 <b>Нове замовлення!</b>\n`;
+          message += `🆔 <b>ID:</b> ${orderId}\n`;
+          message += `👤 <b>Ім’я:</b> ${name}\n`;
+          message += `📞 <b>Телефон:</b> ${phone}\n`;
+          message += `🏠 <b>Адреса:</b> ${address}\n`;
+          message += `💰 <b>Сума:</b> ${total} грн\n\n`;
+          message += `🧾 <b>Склад замовлення:</b>\n`;
+          cart.forEach((item) => {
+            message += `- ${item.title} x${item.qty} = ${Math.round(item.price * item.qty)} грн\n`;
+          });
 
-  fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text: message,
-      parse_mode: 'HTML'
-    })
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.ok) {
-        toast.success('✅ Замовлення надіслано!');
-        document.getElementById('order-result').style.display = 'block';
-        document.getElementById('order-result').innerHTML =
-          '<h3>Дякуємо! Замовлення прийнято 💖</h3>';
-        localStorage.removeItem('bm_cart');
-        document.getElementById('checkout-form').reset();
-        document.getElementById('checkout-total').textContent = '0';
-      } else {
-        toast.error('❌ Помилка при надсиланні замовлення!');
-      }
-    })
-    .catch((err) => {
-      toast.error('Помилка: ' + err.message);
-    });
-});
+          fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: message,
+              parse_mode: 'HTML'
+            })
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.ok) {
+                toast.success('✅ Замовлення надіслано!');
+                document.getElementById('order-result').style.display = 'block';
+                document.getElementById('order-result').innerHTML =
+                  '<h3>Дякуємо! Замовлення прийнято 💖</h3>';
+                localStorage.removeItem('bm_cart');
+                document.getElementById('checkout-form').reset();
+                document.getElementById('checkout-total').textContent = '0';
+              } else {
+                toast.error('❌ Помилка при надсиланні замовлення!');
+              }
+            })
+            .catch((err) => {
+              toast.error('Помилка: ' + err.message);
+            });
+        });
 
-</script>
+      </script>
 
-  </main>
-  <footer class="site-footer card">
-    <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
-  </footer>
+    </main>
+    <footer class="site-footer card">
+      <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
+    </footer>
   </div>
   <script src="js/background.js"></script>
 </body>
+
 </html>

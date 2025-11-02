@@ -1,72 +1,79 @@
 <!doctype html>
 <html lang="uk">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
   <title>Кошик — Бульйонний маніяк</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <div class="site-root">
-  <header class="site-header">
-    <a class="brand" href="index.html"><img src="./img/Бульйонний_маньяк-лого.png" alt="logo"></a>
-    <nav>
-      <a href="menu.html">Меню</a>
-      <a href="about.html">Про нас</a>
-      <a href="contact.html">Контакти</a>
-      <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
-    </nav>
-  </header>
-  <main class="container first-srean">
+    <header class="site-header">
+      <a class="brand" href="index.html"><img src="./img/Бульйонний_маньяк-лого.png" alt="logo"></a>
+      <nav>
+        <a href="menu.html">Меню</a>
+        <a href="about.html">Про нас</a>
+        <a href="contact.html">Контакти</a>
+        <a class="cart-link" href="cart.html">Кошик (<span id="cart-count">0</span>)</a>
+      </nav>
+    </header>
+    <main class="container first-srean">
 
-<h2>Кошик</h2>
-<div id="cart-area" class="card"></div>
-<div id="cart-summary" class="card" style="margin-top:12px; display:none">
-  <p>Разом: <strong id="cart-total">0</strong> грн</p>
-  <div style="margin-top:8px;">
-    <a class="btn" href="checkout.html">Оформити</a> 
-    <button id="empty-cart" class="btn">Очистити</button></div>
-</div>
-<p id="empty-text" class="card">Кошик порожній — заглянь у меню.</p>
-<script>
-function renderCart(){
-  const area = document.getElementById('cart-area');
-  const summary = document.getElementById('cart-summary');
-  const emptyText = document.getElementById('empty-text');
-  const cart = JSON.parse(localStorage.getItem('bm_cart')||'[]');
-  area.innerHTML='';
-  if(cart.length===0){ summary.style.display='none'; emptyText.style.display='block'; return; }
-  emptyText.style.display='none'; summary.style.display='block';
-  let total = 0;
-  cart.forEach(item=>{
-    const row = document.createElement('div'); row.className='cart'; row.style.display='flex'; row.style.justifyContent='space-between'; row.style.padding='12px'; row.style.marginBottom='8px';
-    row.innerHTML = `<div><strong>${item.title}</strong><div style="color:#666">Ціна: ${Math.round(item.price)} грн</div></div>
+      <h2>Кошик</h2>
+      <div id="cart-area" class="card"></div>
+      <div id="cart-summary" class="card" style="margin-top:12px; display:none">
+        <p>Разом: <strong id="cart-total">0</strong> грн</p>
+        <div style="margin-top:8px;">
+          <a class="btn" href="checkout.html">Оформити</a>
+          <button id="empty-cart" class="btn">Очистити</button>
+        </div>
+      </div>
+      <p id="empty-text" class="card">Кошик порожній — заглянь у меню.</p>
+      <script>
+        function renderCart() {
+          const area = document.getElementById('cart-area');
+          const summary = document.getElementById('cart-summary');
+          const emptyText = document.getElementById('empty-text');
+          const cart = JSON.parse(localStorage.getItem('bm_cart') || '[]');
+          area.innerHTML = '';
+          if (cart.length === 0) { summary.style.display = 'none'; emptyText.style.display = 'block'; return; }
+          emptyText.style.display = 'none'; summary.style.display = 'block';
+          let total = 0;
+          cart.forEach(item => {
+            const row = document.createElement('div'); row.className = 'cart'; row.style.display = 'flex'; row.style.justifyContent = 'space-between'; row.style.padding = '12px'; row.style.marginBottom = '8px';
+            row.innerHTML = `<div><strong>${item.title}</strong><div style="color:#666">Ціна: ${Math.round(item.price)} грн</div></div>
       <div style="display:flex; gap:8px; align-items:center">
         <button class="btn small dec">−</button>
         <input class="qty" style="width:56px; text-align:center" type="number" min="1" value="${item.qty}">
         <button class="btn small inc">+</button>
-        <div style="width:90px; text-align:right"><strong>${Math.round(item.price*item.qty)} грн</strong></div>
+        <div style="width:90px; text-align:right"><strong>${Math.round(item.price * item.qty)} грн</strong></div>
         <button class="btn" style="background:#333;border:1px solid #eee" data-id="${item.id}">Видалити</button>
       </div>`;
-    area.appendChild(row);
-    total += item.price * item.qty;
-    row.querySelector('.dec').addEventListener('click', ()=>{ if(item.qty>1){ item.qty--; localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); } });
-    row.querySelector('.inc').addEventListener('click', ()=>{ item.qty++; localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
-    row.querySelector('.qty').addEventListener('change', (e)=>{ item.qty = Math.max(1, Number(e.target.value||1)); localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
-    row.querySelector('button[data-id]').addEventListener('click', (e)=>{ const id = e.target.getAttribute('data-id'); const idx = cart.findIndex(i=>i.id===id); cart.splice(idx,1); localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
-  });
-  document.getElementById('cart-total').textContent = Math.round(total);
-  document.getElementById('empty-cart').onclick = ()=>{ if(confirm('Очистити кошик?')){ localStorage.removeItem('bm_cart'); renderCart(); } };
-}
-renderCart();
-</script>
+            area.appendChild(row);
+            total += item.price * item.qty;
+            row.querySelector('.dec').addEventListener('click', () => { if (item.qty > 1) { item.qty--; localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); } });
+            row.querySelector('.inc').addEventListener('click', () => { item.qty++; localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
+            row.querySelector('.qty').addEventListener('change', (e) => { item.qty = Math.max(1, Number(e.target.value || 1)); localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
+            row.querySelector('button[data-id]').addEventListener('click', (e) => { const id = e.target.getAttribute('data-id'); const idx = cart.findIndex(i => i.id === id); cart.splice(idx, 1); localStorage.setItem('bm_cart', JSON.stringify(cart)); renderCart(); });
+          });
+          document.getElementById('cart-total').textContent = Math.round(total);
+          document.getElementById('empty-cart').onclick = () => { if (confirm('Очистити кошик?')) { localStorage.removeItem('bm_cart'); renderCart(); } };
+        }
+        renderCart();
+      </script>
 
-  </main>
-  <footer class="site-footer card">
-    <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
-  </footer>
+    </main>
+    <footer class="site-footer card">
+      <p>© 2025 Бульйонний маніяк — Рамен у серці міста</p>
+    </footer>
   </div>
   <script src="js/background.js"></script>
 </body>
+
 </html>
