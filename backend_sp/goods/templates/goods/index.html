@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% load i18n %} 
+{% load static %}
+
+  {% block title_meta %}
+  <title>{% trans "Бульйонний маніяк — Головна" %}</title>
+  {% endblock title_meta %}
+  {% block hero-section %}
+  <main class="container page-wrapper">
+
+<section class="hero">
+  <h1 style="display: none;">{% trans "Бульйонний маніяк" %}</h1>
+<img src="./img/БУЛЬЙОННИЙ МАНІЯК.png" alt="logo">
+
+  <p>{% trans "Рамен, що вибухає смаком — швидко, весело, по-японськи." %}</p>
+  <div class="hero-actions">
+    <a class="btn" href="{% url 'goods:all_products' %}">{% trans "Переглянути меню" %}</a>
+    <a class="btn" href="about.html">{% trans "Про нас" %}</a>
+  </div>
+</section>
+<section style="margin-top:18px;" class="card">
+  <h3>{% trans "Наші фішки" %}</h3>
+<ul class="features">
+  <li>🍜 {% trans "Авторські рецепти у комік-стилі" %}</li>
+  <li>🚀 {% trans "Швидка доставка" %}</li>
+  <li>😄 {% trans "Веселий персонал та великий бульйон" %}</li>
+  <li>🎨 {% trans "Яскравий інтер’єр у стилі коміксів" %}</li>
+  <li>💌 {% trans "Привітні акції та подарунки для клієнтів" %}</li>
+  <li>🥢 {% trans "Свіжі інгредієнти щодня" %}</li>
+  <li>📸 {% trans "Фото та відео з подій та рецептів" %}</li>
+</ul>
+</section>
+  {% endblock hero-section %}

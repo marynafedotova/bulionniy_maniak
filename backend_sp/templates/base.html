@@ -1,0 +1,61 @@
+{% load i18n %} 
+{% load static %}
+{% load menu_tags %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+  <link rel="manifest" href="/site.webmanifest">
+    {% block title_meta %}
+    {% endblock title_meta %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="site-root">
+  <header class="site-header">
+    <a class="brand" href="{% url 'goods:index' %}">
+      <img src="./img/Бульйонний_маньяк-лого.png" alt="">
+    </a>
+      <nav>
+        {% render_menu %} 
+        <ul>
+          <li><a href="about.html">{% trans "Про нас" %}</a></li>
+          <li><a href="contact.html">{% trans "Контакти" %}</a></li>
+          <li><a class="cart-link" href="cart.html">{% trans "Кошик" %} (<span id="cart-count">0</span>)</a></li>
+        </ul>
+      </nav>
+    <div>
+      <ul>
+        <li>
+          <a href="https://www.instagram.com/">
+            <img src="./img/instagram-1-svgrepo-com.svg" alt="instagramm logo">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/?locale=uk_UA">
+            <img src="./img/facebook-rounded-svgrepo-com.svg" alt="facebook logo">
+          </a>
+        </li>
+                <li>
+          <a href="https://www.tiktok.com/uk-UA/">
+            <img src="./img/tiktok-logo-logo-svgrepo-com.svg" alt="facebook logo">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  {% block hero-section %}
+  {% endblock hero-section %}
+
+  <footer class="site-footer card">
+    <p>© 2025 {% trans "Бульйонний маніяк — Рамен у серці міста" %}</p>
+  </footer>
+  </main>
+  </div>
+  <script src="js/background.js"></script>
+</body>
+</html>

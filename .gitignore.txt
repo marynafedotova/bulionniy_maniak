@@ -1,0 +1,12 @@
+# Віртуальне оточення
+venv/
+.env/
+.sp/
+
+# Кеші Python
+__pycache__/
+*.pyc
+
+# IDE / редактори
+.vscode/
+.idea/

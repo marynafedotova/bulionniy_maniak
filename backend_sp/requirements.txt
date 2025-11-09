@@ -1,0 +1,6 @@
+Django
+aiogram
+requests
+qrcode
+python-barcode
+python-dotenv
