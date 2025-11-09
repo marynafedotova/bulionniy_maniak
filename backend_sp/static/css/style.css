@@ -2,14 +2,19 @@
 /* New comic/woodcut style + parallax */
 :root{
   --accent:#ff0000;
-  --bg:#0c0c0b;
-  --muted:#d49999;
+  --bg:#feffff;
+  --muted:#fe8294;
   --card:#fff;
   --text-color: #eee9e9;
   --soya-ramem: #A66E4B;
   --salt-ramem: #FF6B35;
   --miso-ramem: #E8C547;
   --pork-ramem: #FF4D6D;
+
+  /* #bf203d pink
+#fe8294 light pink
+#feffff white */
+
 }
 @font-face {
   font-family: 'Hanko';
@@ -27,7 +32,7 @@ body {
   margin: 0;
   font-family: sans-serif;
 
- background: var(--bg);
+ background: #feffff;
   /* background-image: url('./img/sakura-bg.png'); */
   background-size: cover;       /* Заполняет весь экран */
   background-position: center;  /* Центр изображения */
@@ -40,25 +45,6 @@ html,body{height:100%; margin:0;
   color: azure;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
-/* body{background:var(--bg); color:#2b2b2b; color: azure;} */
-
-/* parallax container spans full page behind content */
-#parallax-wrap{position:fixed; inset:0; overflow:hidden; z-index:0; pointer-events:none;}
-.parallax-layer{position:absolute; left:50%; transform:translateX(-50%); will-change:transform;}
-.page-wrapper{
-  height: 100vh;
-}
-/* ensure layers cover wide area */
-.layer-sky{top:-60px; width:1400px; height:420px;}
-.layer-sun{top:20px; width:1200px; height:400px;}
-.layer-mountain{top:80px; width:1600px; height:420px;}
-.layer-waves{bottom:-40px; width:1600px; height:400px;}
-
-/* canvas for sakura */
-#sakura-canvas{position:fixed; inset:0; z-index:999; pointer-events:none;}
-.first-srean{
-  height: 100vh;
-}
 /* main content above background */
 .site-root{position:relative; z-index:1000;}
 
@@ -68,7 +54,8 @@ html,body{height:100%; margin:0;
    justify-content:space-between; 
    color: azure;
    padding:4px 20px; 
-   background:linear-gradient(180deg, rgba(80, 66, 66, 0.9), rgba(122, 114, 114, 0.8)); position:sticky; top:0; backdrop-filter: blur(4px); z-index:1010; border-bottom:1px solid rgba(0,0,0,0.04)}
+background: linear-gradient(180deg, #bf203d, #fe8294);
+position:sticky; top:0; backdrop-filter: blur(4px); z-index:1010; border-bottom:1px solid rgba(0,0,0,0.04)}
 .brand{
   width: 70px;
   
@@ -76,6 +63,65 @@ html,body{height:100%; margin:0;
 .brand:hover{
   scale: 1.1;
 }
+.site-header nav {
+  width: 80%;
+  display: inline-flex;
+  justify-content: center;
+}
+.site-header nav  ul{
+  padding-left: 4px;
+}
+.nav-item.dropdown {
+  position: relative;
+}
+
+/* Основное меню */
+.dropdown-menu {
+  display: none;
+  position: absolute;  
+  top: 100%; 
+  left: 0; 
+  flex-direction: column;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  /* min-width: 200px; */
+  z-index: 1000;
+}
+.nav-item .dropdown {
+  position: relative;
+  background: #fe8294; 
+  margin-bottom: 4px;  
+  padding: 4px 8px;
+  color: white;
+  list-style: none;
+  clip-path: polygon(
+    0 0, 90% 0, 100% 50%, 90% 100%, 0 100%
+  ); /* делает "зуб" справа */
+  cursor: pointer;
+}
+
+.nav-item.dropdown:hover > .dropdown-menu {
+  display: flex;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  flex-direction: column;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  min-width: 180px;
+  z-index: 1000;
+}
+
+.dropdown-menu > li:hover > .submenu {
+  display: flex;
+}
+
+
+
 .site-header a img{
   width: 100%;
   border-radius: 8px;
@@ -83,11 +129,13 @@ html,body{height:100%; margin:0;
 .site-header nav a{
   margin-left:14px;
   text-decoration:none; 
-  color: var(--card);
+  color: var(--pork-ramem);
   background-color: var(--bg);
   padding: 8px 16px;
   border-radius: 4px;
   font-weight: 600;
+  margin: 0 auto;
+  min-width: 200px;
 }
 .site-header nav a:hover{
   text-decoration: underline;
@@ -104,9 +152,14 @@ html,body{height:100%; margin:0;
   width: 35px;
 }
 /* hero uses transparent card to show parallax behind */
-.container{max-width:1100px; margin:28px auto; padding:0 16px; position:relative}
-.hero{ background-color: rgba(34, 33, 33, 0.9); padding:44px; border-radius:14px; display:grid; gap:12px; box-shadow: 0 8px 30px rgba(11,17,25,0.06)}
-.hero h1{font-size:2.2rem; margin:0; color:#2b2b2b}
+.container{  width: min(90%, 1220px);
+  margin: 0 auto; 
+  position:relative}
+.hero{ background-color: #fe8294; padding:44px; border-radius:14px; display:grid; gap:12px; box-shadow: 0 8px 30px rgba(11,17,25,0.06)}
+ h1{font-size:2.2rem; margin:0; 
+  color:#2b2b2b;
+  text-align: center;
+}
 .btn{background:var(--accent); color:#fff; padding:10px 14px; border-radius:12px; border:0; cursor:pointer; text-decoration:none; display:inline-block}
 .hero img{
   width: 100%;
@@ -129,7 +182,7 @@ html,body{height:100%; margin:0;
 }
 
 .features li {
-  background: linear-gradient(135deg, #2e2b2b, #180101);
+  background: linear-gradient(135deg, #f0cdcd, #ecd6d6);
   border: 2px solid #faf9f5;
   border-radius: 12px;
   padding: 12px 16px;
@@ -140,7 +193,7 @@ html,body{height:100%; margin:0;
   box-shadow: 3px 3px #faf8f4;
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: default;
-  color: var(--card);
+  color: var(--pork-ramem);
 }
 
 .features li:hover {
@@ -158,14 +211,35 @@ html,body{height:100%; margin:0;
 }
 
 /* Карточка товара */
+.products-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.products-item{
+  max-width: 400px;
+  height: 100%;
+}
+.products-line .products-item .card-item img{
+  width: 400px;
+  max-height: 350px;
+  object-fit: contain;
+  
+}
+.all_products{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  gap: 16px;
+}
 
-/* Общий стиль карточки */
 .card {
-  background-color: rgba(34, 33, 33, 0.9);
+  background-color: var(--card);
   border-radius: 16px;
-  padding: 8px;
+  /* padding: 8px; */
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(194, 131, 131, 0.15);
+  box-shadow: 0 4px 16px rgba(175, 55, 55, 0.15);
   transform: translateY(30px);
   opacity: 0;
   animation: cardFadeIn 0.8s ease forwards;
@@ -173,6 +247,7 @@ html,body{height:100%; margin:0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid var(--pork-ramem);
 }
 .card:hover{
   scale: 1.1;
@@ -195,7 +270,6 @@ html,body{height:100%; margin:0;
   }
 }
 
-/* Эффект появления изображения */
 .card-img {
   width: 100%;
   height: 180px;
@@ -215,6 +289,7 @@ html,body{height:100%; margin:0;
 
 /* Тело карточки — появление снизу */
 .card-body {
+  background-color: var(--muted);
   padding: 16px;
   opacity: 0;
   transform: translateY(20px);
@@ -233,6 +308,7 @@ html,body{height:100%; margin:0;
   font-size: 18px;
   font-weight: 600;
   margin: 0 0 6px 0;
+  background-color: var(--muted);
 }
 
 .card-desc {
@@ -288,6 +364,13 @@ html,body{height:100%; margin:0;
   color: var(--accent);
   font-family: 'Seibi Minato';
 }
+
+.page-wrapper{
+  height: 100vh;
+}
+.modifier-list li {
+  color: #2b2b2b;
+}
 /* modal */
 .modal-content{
   background-color: #2b2b2b;
@@ -303,9 +386,14 @@ html,body{height:100%; margin:0;
 .modal.hidden{display:none}
 h2{
   text-align: center;
+  color: #0c0c0b;
 }
 /* small adjustments */
-.site-footer{text-align:center; padding:18px; color:var(--text-color); margin-top:36px; z-index:1010}
+.site-footer{text-align:center; 
+  padding:18px; 
+  color:var(--text-color);
+  background-color: var(--muted);
+  margin-top:36px; z-index:1010}
 /* responsive tweaks */
 @media (max-width:700px){
   .hero{padding:18px}

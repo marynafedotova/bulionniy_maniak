@@ -1,33 +1,32 @@
-
-{% load i18n %} 
+{% load i18n %}
 {% load static %}
 
-  {% block title_meta %}
-  <title>Меню</title>
-  {% endblock title_meta %}
-  {% block hero-section %}
- 
-   <ul class="nav">
+{% block title_meta %}
+<title>Меню</title>
+{% endblock title_meta %}
+{% block hero-section %}
+
+<ul class="nav">
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="{% url 'goods:all_products' %}" data-bs-toggle="dropdown">
       Меню
     </a>
     <ul class="dropdown-menu">
       {% for group in groups %}
-  <a class="dropdown-item" href="{{ group.get_absolute_url }}">{{ group.name }}</a>
-  {% if group.children.exists %}
-    <ul class="submenu">
-      {% for child in group.children.all %}
-        <li><a class="dropdown-item" href="{{ child.get_absolute_url }}">{{ child.name }}</a></li>
+      <li>
+        <a class="dropdown-item" href="{{ group.get_absolute_url }}">{{ group.name }}</a>
+        {% if group.children.exists %}
+        <ul class="submenu">
+          {% for child in group.children.all %}
+          <li><a class="dropdown-item" href="{{ child.get_absolute_url }}">{{ child.name }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
       {% endfor %}
-    </ul>
-  {% endif %}
-{% endfor %}
-
     </ul>
   </li>
 </ul>
 
 
-    {% endblock hero-section %}
-    
+{% endblock hero-section %}
