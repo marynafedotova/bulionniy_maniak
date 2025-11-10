@@ -1,10 +1,10 @@
 # Віртуальне оточення
-venv/
-.env/
-.sp/
+sp/
+.env
+
 
 # Кеші Python
-__pycache__/
+pycache/
 *.pyc
 
 # IDE / редактори
