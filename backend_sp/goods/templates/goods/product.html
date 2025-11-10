@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block hero-section %}
+
+<div class="product-card container">
+    <div class="row">
+        <!-- Фото продукту -->
+        <div class="col-md-4">
+            {% if product.image_url %}
+                <img src="{{ product.image_url }}" class="img-fluid" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+
+        <!-- Інформація про продукт -->
+        <div class="col-md-8">
+            <h2>{{ product.name }}</h2>
+            
+            {% if product.description %}
+                <p>{{ product.description }}</p>
+            {% endif %}
+            
+            <p class="card-text"> Енергетична цінність на 100 г:</p>
+                    <p class="card-text"> - Калорії: 236</p>
+                    <p class="card-text"> - Білки: 7 г</p>
+                    <p class="card-text"> - Жири: 17 г</p>
+                    <p class="card-text"> - Вуглеводи: 10 г</p>
+                    <p class="card-text"> - Хлібні одиниці: 0,83</p>
+            
+            <p><strong>Вага:</strong> {{ product.weight }} {{ product.measure_unit }}</p>
+            <p><strong>Ціна:</strong> {{ product.price }} грн</p>
+            
+            <button class="btn btn-primary add-to-cart-btn" data-product-id="{{ product.id }}">
+                Додати
+            </button>
+        </div>
+    </div>
+
+    <!-- Модифікатори -->
+{% if modifiers_data %}
+    <div class="modifiers-section">
+        <h4>Модифікатори</h4>
+        {% for mod_group in modifiers_data %}
+            <div class="modifier-group">
+                <h5>{{ mod_group.modifier_group.name }}</h5>
+                <div class="modifier-products">
+                    {% for child in mod_group.child_products %}
+                        <div class="modifier-item">
+                            <span>{{ child.name }} - {{ child.price }} грн</span>
+                        </div>
+                    {% empty %}
+                        <p>Немає доступних модифікаторів</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock hero-section %}

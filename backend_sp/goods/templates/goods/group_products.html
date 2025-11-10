@@ -8,21 +8,23 @@
 <div class="row products-line ">
     {% for product in products %}
     <div class="products-item">
-        <div class="card card-item">
-            {% if product.image_url %}
-            <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ product.name }}</h5>
-                {% if product.description %}
-                <p class="card-text">{{ product.description }}</p>
+            <div class="card card-item">
+                {% if product.image_url %}
+                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
                 {% endif %}
-                {% if product.additionalInfo %}
-                <p class="card-text">{{ product.additionalInfo }}</p>
-                {% endif %}
-                <p class="card-text">{{ product.measure_unit }} {{ product.weight }}0</p>
-                <p class="card-text">{{ product.price }} грн</p>
-            </div>
+                    <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text"> Енергетична цінність на 100 г:</p>
+                    <p class="card-text"> - Калорії: 236</p>
+                    <p class="card-text"> - Білки: 7 г</p>
+                    <p class="card-text"> - Жири: 17 г</p>
+                    <p class="card-text"> - Вуглеводи: 10 г</p>
+                    <p class="card-text"> - Хлібні одиниці: 0,83</p>
+                    <p class="card-text">{{ product.measure_unit }} {{ product.weight }}0 грам</p>
+                    <p class="card-text">{{ product.price }} грн</p>
+                    <a href="{% url 'goods:product_detail' group_slug=product.group.slug product_slug=product.slug %}">Деталі</a>
+
+                </div>
         </div>
     </div>
     {% endfor %}

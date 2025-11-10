@@ -88,6 +88,8 @@ class SyrveClient:
         data = self.get_menu()
 
         categories = [ cat for cat in data.get("productCategories", []) if not cat.get("isDeleted")]
+        category_ids = [cat["id"] for cat in categories] 
+
         for cat in categories:
             ProductCategory.objects.update_or_create(
                 id=cat["id"],
@@ -95,8 +97,13 @@ class SyrveClient:
                     "name": cat["name"]
                 }
             )
+
+        ProductCategory.objects.exclude(id__in=category_ids).delete()
+
             
         groups = [gr for gr in data.get("groups", []) if not gr.get("isDeleted")]
+        group_ids = [gr["id"] for gr in groups]
+
         for gr in groups:
 
             slug = self.generate_unique_slug(Group, gr.get("name", ""))
@@ -109,7 +116,7 @@ class SyrveClient:
                     "parent_id": gr.get("parentGroup"),
                     "order": gr.get("order", 0),
                     "is_included_in_menu": gr.get("isIncludedInMenu", True),
-                    "is_group_modifier": gr.get("isGroupModifier", False),
+                    "is_group_modifier": gr.get("isGroupModifier") is True,
                     "description": gr.get("description"),
                     "additional_info": gr.get("additionalInfo"),
                     "code": gr.get("code", ""),
@@ -123,15 +130,23 @@ class SyrveClient:
                 }
             )
 
+        Group.objects.exclude(id__in=group_ids).delete()
+
+
 
 
         products = [p for p in data.get("products", []) if not p.get("isDeleted")]
+        product_ids = [] 
+
         for p in products:
             # Пропускаємо модифікатори і ті, що не в меню
             if p.get("type") != Product.DISH:
                 continue
             if not p.get("sizePrices") or not p["sizePrices"][0].get("price", {}).get("isIncludedInMenu", True):
                 continue
+
+            product_ids.append(p["id"])
+
 
             # Визначаємо групу за parentGroup
             group = None
@@ -169,6 +184,7 @@ class SyrveClient:
                     "is_included_in_menu": p.get("isIncludedInMenu", True)
                 }           
             )
+        Product.objects.exclude(id__in=product_ids).delete()
 
         # Обробка груп модифікаторів
         for gm in p.get("groupModifiers", []):
@@ -200,6 +216,7 @@ class SyrveClient:
                             "free_of_charge_amount": child.get("freeOfChargeAmount", 0)
                         }
                     )
+        
 
     def generate_unique_slug(self, model, name):
         """Генерує унікальний url з назви"""
