@@ -7,11 +7,64 @@
   <title>{% trans "Зеро калорій — Головна" %}</title>
   {% endblock title_meta %}
   {% block hero-section %}
-  <main class="container page-wrapper">
-
-<section class="hero">
+  <main class="page-wrapper">
+ <div>
+    <!-- Buttons -->
+    <div>
+      <button id="prevButton" class="wave"><i class="fa-solid fa-chevron-left">⮜</i></button>
+      <button id="nextButton" class="wave"><i class="fa-solid fa-chevron-right">➤</i></button>
+    </div>
+    <!-- Fixed Sections -->
+    <div class="text">
+      <h1 class="h1">brownies</h1>
+      <div class="cane-image ">
+        <img src="{% static '/img/brauni.png' %}" alt="dessrt">
+        <!-- <img src="{% static '/img/brauni.jpg' %}" alt="" class="cane-labels"> -->
+      </div>
+    </div>
+    <!-- Fixed Sections Ends-->
+    <!-- Fruits Images Section -->
+    <div class="section-container-main">
+      <div class="section-container">
+        <section class="section" id="section1">
+          <div class="fruit-images">
+            <div class="image-one fruit-image"><img src="{% static '/img/chocolate1.png' %}" alt="pear-image"></div>
+            <div class="image-two fruit-image"><img src="{% static '/img/chocolate3.png' %}" alt="pear-image"></div>
+            <div class="image-three fruit-image"><img src="{% static '/img/chocolate1.png' %}" alt="pear-image"></div>
+            <div class="image-four fruit-image"><img src="{% static '/img/chocolate3.png' %}" alt="pear-image"></div>
+          </div>
+        </section>
+        <section class="section" id="section2">
+          <div class="fruit-images">
+            <div class="image-one fruit-image"><img src="{% static '/img/chocolate1.png' %}" alt="apple-image"></div>
+            <div class="image-two fruit-image"><img src="{% static '/img/chokolatewhite.png' %}" alt="apple-image"></div>
+            <div class="image-three fruit-image"><img src="{% static '/img/chocolate4.png' %}" alt="apple-image"></div>
+            <div class="image-four fruit-image"><img src="{% static '/img/chocolate1.png' %}" alt="apple-image"></div>
+          </div>
+        </section>
+        <section class="section" id="section3">
+          <div class="fruit-images">
+            <div class="image-one fruit-image"><img src="https://www.yudiz.com/codepen/fruity/exotic-one.png" alt="exotic-image"></div>
+            <div class="image-two fruit-image"><img src="https://www.yudiz.com/codepen/fruity/exotic-two.png" alt="exotic-image"></div>
+            <div class="image-three fruit-image"><img src="https://www.yudiz.com/codepen/fruity/exotic-three.png" alt="exotic-image"></div>
+            <div class="image-four fruit-image"><img src="https://www.yudiz.com/codepen/fruity/exotic-four.png" alt="exotic-image"></div>
+          </div>
+        </section>
+                <section class="section" id="section4">
+          <div class="fruit-images">
+            <div class="image-one fruit-image"><img src="{% static '/img/вишня.png' %}" alt="exotic-image"></div>
+            <div class="image-two fruit-image"><img src="{% static '/img/смородина.png' %}" alt="exotic-image"></div>
+            <div class="image-three fruit-image"><img src="{% static '/img/клубника.png' %}" alt="exotic-image"></div>
+            <div class="image-four fruit-image"><img src="{% static '/img/вишня.png' %}" alt="exotic-image"></div>
+          </div>
+        </section>
+      </div>
+  </div>
+ 
+ 
+<section class="hero container">
   <h1 style="display: none;">{% trans "Зеро калорій" %}</h1>
-<img src="{% static './img/Зеро1.png' %}" alt="logo">
+<!-- <img src="{% static './img/Зеро1.png' %}" alt="logo"> -->
 
   <p>{% trans "Солодко без докорів сумління – насолоджуйся, не рахуючи калорій!" %}</p>
   <div class="hero-actions">
@@ -19,7 +72,7 @@
     <a class="btn" href="about.html">{% trans "Про нас" %}</a>
   </div>
 </section>
-<section style="margin-top:18px;" class="card">
+<section  class="container" style="margin-top:18px;" class="card">
   <h3>{% trans "Наші фішки" %}</h3>
 <ul class="features">
   <li>🍰 {% trans "Солодощі, від яких паморочиться голова, але вага не росте" %}</li>
@@ -31,4 +84,84 @@
   <li>📸 {% trans "Фото та відео наших десертів та подій" %}</li>
 </ul>
 </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<!-- Подключение GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- JS -->
+<script>
+const h1Texts = ["brownies", "three chocolates","passion fruit", "berries"];
+const caneImages = [
+  "{% static '/img/brauni.png' %}",
+  "{% static '/img/3chokolate.png' %}",
+  "{% static '/img/panakota_maracuya.png' %}",
+  "{% static '/img/panakota_jem.png' %}"
+];
+function animateDessert() {
+  gsap.set(caneImage, { y: -100, opacity: 0 }); // старт сверху
+  gsap.to(caneImage, {
+    y: 0,
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out"
+  });
+}
+
+let currentIndex = 0;
+let currentPosition = 0;
+
+const sectionContainer = document.querySelector(".section-container");
+const h1Element = document.querySelector(".h1");
+const caneImage = document.querySelector(".cane-image img");
+const nextButton = document.getElementById("nextButton");
+const prevButton = document.getElementById("prevButton");
+
+// Изначально скрываем prevButton
+prevButton.style.display = "none";
+
+// GSAP анимация фруктов
+gsap.from(".fruit-image", { y: "-100vh", delay: 0.5 });
+gsap.to(".fruit-image img", {
+  x: "random(-20, 20)",
+  y: "random(-20, 20)",
+  zIndex: 22,
+  duration: 2,
+  ease: "none",
+  yoyo: true,
+  repeat: -1
+});
+
+// Кнопка ВПЕРЁД
+nextButton.addEventListener("click", () => {
+  if (currentIndex < h1Texts.length - 1) {
+    currentIndex++;
+    currentPosition -= 100;
+    sectionContainer.style.left = `${currentPosition}%`;
+
+    // Обновляем десерт и заголовок
+    h1Element.innerHTML = h1Texts[currentIndex];
+    caneImage.src = caneImages[currentIndex];
+     animateDessert();
+
+    prevButton.style.display = "block";
+    if (currentIndex === h1Texts.length - 1) nextButton.style.display = "none";
+  }
+});
+
+// Кнопка НАЗАД
+prevButton.addEventListener("click", () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    currentPosition += 100;
+    sectionContainer.style.left = `${currentPosition}%`;
+
+    // Обновляем десерт и заголовок
+    h1Element.innerHTML = h1Texts[currentIndex];
+    caneImage.src = caneImages[currentIndex];
+ animateDessert();
+    nextButton.style.display = "block";
+    if (currentIndex === 0) prevButton.style.display = "none";
+  }
+});
+</script>
   {% endblock hero-section %}
