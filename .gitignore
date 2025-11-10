@@ -4,7 +4,7 @@ sp/
 
 
 # Кеші Python
-__pycache__/
+pycache/
 *.pyc
 
 # IDE / редактори
