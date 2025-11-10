@@ -828,10 +828,9 @@ button {
   h1 {
     font-size: 350px !important;
   }
-  .cane-image {
-    width: 100%;
-    aspect-ratio: 1;
-  }
+  .cane-image img {
+  width: 300px;
+}
   .image-one {
     max-width: 250px;
   }
@@ -875,9 +874,7 @@ button {
   h1 {
     font-size: 240px !important;
   }
-  .cane-image {
-    max-width: 250px;
-  }
+
   button {
     height: 80px;
     width: 80px;
@@ -906,9 +903,7 @@ button {
   h2 {
     font-size: 30px;
   }
-  .cane-image {
-    max-width: 180px;
-  }
+
   button {
     height: 60px;
     width: 60px;
@@ -936,9 +931,7 @@ button {
   h1 {
     font-size: 100px !important;
   }
-  .cane-image::after {
-    width: 100%;
-  }
+
   .image-one {
     max-width: 150px;
   }
