@@ -1,7 +1,7 @@
 # Віртуальне оточення
-venv/
-.env/
-.sp/
+sp/
+.env
+
 
 # Кеші Python
 __pycache__/
