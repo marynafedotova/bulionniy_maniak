@@ -58,7 +58,6 @@ background: linear-gradient(180deg, #bf203d, #fe8294);
 position:fixed; top:0; backdrop-filter: blur(4px); z-index:1010; border-bottom:1px solid rgba(0,0,0,0.04)}
 .brand{
   width: 70px;
-  
 }
 .brand:hover{
   scale: 1.1;
@@ -125,6 +124,9 @@ position:fixed; top:0; backdrop-filter: blur(4px); z-index:1010; border-bottom:1
 .site-header a img{
   width: 100%;
   border-radius: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+
 }
 .site-header nav a{
   margin-left:14px;
